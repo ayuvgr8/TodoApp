@@ -1,11 +1,11 @@
 user_prompt = "Enter the todo:"
 
-todo_list = []
+todos = []
 
 while True:
     todo = input(user_prompt)
-    todo_list.append(todo)
-    print(todo_list)
+    todos.append(todo)
+    print(todos)
 
 
 
