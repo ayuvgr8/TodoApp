@@ -1,10 +1,12 @@
 user_prompt = "Enter the todo:"
 
+todo_list = []
 
 while True:
     todo = input(user_prompt)
-    print(todo)
-    print("Next...")
+    todo_list.append(todo)
+    print(todo_list)
+
 
 
 
