@@ -4,10 +4,10 @@ todos = []
 
 while True:
     todo = input(user_prompt)
+    # todo.append()     'str' object has no attribute 'append'
+    print(todo.capitalize())
     todos.append(todo)
-    print(todos)
-
-
+    # print(todos)
 
 
 
