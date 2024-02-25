@@ -10,15 +10,15 @@ while True:
         case 'Add' | 'add':
             todo = input("Enter a Todo : ")
             todos.append(todo)
-        case 'Show' | 'Display' | 'show' | 'display':                            # Bitwise Operator (Show or Display type anything  )
+        case 'Show' | 'Display' | 'show' | 'display':                            # bitwise Operator (Show or Display type anything  )
             for item in todos:
                 item = item.title()
                 print(item)
-        case 'edit' | 'Edit':
-            number = int(input("Number of the todo to edit: "))                  # we will use List Indexing Function
-            number = number -1
+        case 'edit' | 'Edit':                                                    # we will use List Indexing Function
+            number = int(input("Number of the todo to edit: "))                  # we are converting str to int here
+            number = number - 1                                                  # indexing the todo
             new_todo = input("Enter the New Todo: ")
-            todos[number] = new_todo
+            todos[number] = new_todo                                             # access the items from the list and how to replace that item through that syntax
         case 'Exit' | 'exit':
             break
         case  _:
