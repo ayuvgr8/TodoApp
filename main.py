@@ -13,7 +13,8 @@ while True:
         case 'Show' | 'Display' | 'show' | 'display':                            # bitwise Operator (Show or Display type anything  )
             for index, item in enumerate(todos):                                 # enumerate fn used here to get index
                 item = item.title()
-                print(index, '-', item)
+                row = f"{index + 1}.{item}"                                      # use of f"string" is here !
+                print(row)
         case 'edit' | 'Edit':                                                    # we will use List Indexing Function
             number = int(input("Number of the todo to edit: "))                  # we are converting str to int here
             number = number - 1                                                  # indexing the todo
