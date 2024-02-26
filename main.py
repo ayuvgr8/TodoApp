@@ -1,4 +1,4 @@
-# user_prompt = "Enter the todo:"
+# user_prompt = "Enter the todo:" todos = ['run', 'clean', 'throw']
 
 todos = []
 
@@ -11,9 +11,9 @@ while True:
             todo = input("Enter a Todo : ")
             todos.append(todo)
         case 'Show' | 'Display' | 'show' | 'display':                            # bitwise Operator (Show or Display type anything  )
-            for item in todos:
+            for index, item in enumerate(todos):                                 # enumerate fn used here to get index
                 item = item.title()
-                print(item)
+                print(index, '-', item)
         case 'edit' | 'Edit':                                                    # we will use List Indexing Function
             number = int(input("Number of the todo to edit: "))                  # we are converting str to int here
             number = number - 1                                                  # indexing the todo
