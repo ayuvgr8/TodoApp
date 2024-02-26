@@ -3,7 +3,7 @@
 todos = []
 
 while True:
-    user_action = input("Type Add, Show, Edit or Exit : ")
+    user_action = input("Type Add, Show, Edit, Complete, Exit : ")
     user_action = user_action.strip()                                            # strip() function is used to eliminate the extra spaces
 
     match user_action:
@@ -19,7 +19,10 @@ while True:
             number = int(input("Number of the todo to edit: "))                  # we are converting str to int here
             number = number - 1                                                  # indexing the todo
             new_todo = input("Enter the New Todo: ")
-            todos[number] = new_todo                                             # access the items from the list and how to replace that item through that syntax
+            todos[number] = new_todo                                           # access the items from the list and how to replace that item through that syntax
+        case 'complete':
+            number = int(input("Number of the todo to complete: "))
+            todos.pop(number - 1)
         case 'Exit' | 'exit':
             break
         case  _:
