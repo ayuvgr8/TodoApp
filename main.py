@@ -42,6 +42,10 @@ while True:
             todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
 
 
+            file = open('todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
+
         case 'complete':
             number = int(input("Number of the todo to complete: "))
             todos.pop(number - 1)
