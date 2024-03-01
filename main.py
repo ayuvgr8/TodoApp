@@ -31,6 +31,11 @@ while True:
                 print(row)
 
         case 'edit' | 'Edit':  # we will use List Indexing Function
+
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+
             number = int(input("Number of the todo to edit: "))  # we are converting str to int here
             number = number - 1  # indexing the todo
             new_todo = input("Enter the New Todo: ")
