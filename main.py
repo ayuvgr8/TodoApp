@@ -32,7 +32,7 @@ while True:
 
         case 'edit' | 'Edit':  # we will use List Indexing Function
 
-            file = open('todos.txt', 'r')
+            file = open('todos.txt', 'r') #Basically it shows how to edit the file stores in Files
             todos = file.readlines()
             file.close()
 
