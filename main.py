@@ -32,7 +32,7 @@ while True:
 
         case 'edit' | 'Edit':  # we will use List Indexing Function
 
-            file = open('todos.txt', 'r') #Basically it shows how to edit the file stores in Files
+            file = open('todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
             todos = file.readlines()
             file.close()
 
@@ -41,15 +41,13 @@ while True:
             new_todo = input("Enter the New Todo: ")
             todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
 
-
-            file = open('todos.txt', 'w')
+            file = open('todos.txt', 'w') #reformatted the file
             file.writelines(todos)
             file.close()
 
         case 'complete':
             number = int(input("Number of the todo to complete: "))
             todos.pop(number - 1)
-
 
         case 'Exit' | 'exit':
             break
