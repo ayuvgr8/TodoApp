@@ -10,18 +10,18 @@ while True:
         case 'Add' | 'add':
             todo = input("Enter a Todo : ") + "\n"
 
-            file = open('todos.txt', 'r')
+            file = open('Files/todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
             todos.append(todo)
 
-            file = open('todos.txt', 'w')
+            file = open('Files/todos.txt', 'w')
             file.writelines(todos)
             file.close()
 
         case 'Show' | 'Display' | 'show' | 'display':  # bitwise Operator (Show or Display type anything  )
-            file = open('todos.txt', 'r')
+            file = open('Files/todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
@@ -32,7 +32,7 @@ while True:
 
         case 'edit' | 'Edit':  # we will use List Indexing Function
 
-            file = open('todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
+            file = open('Files/todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
             todos = file.readlines()
             file.close()
 
@@ -41,7 +41,7 @@ while True:
             new_todo = input("Enter the New Todo: ")
             todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
 
-            file = open('todos.txt', 'w') #reformatted the file
+            file = open('Files/todos.txt', 'w') #reformatted the file
             file.writelines(todos)
             file.close()
 
