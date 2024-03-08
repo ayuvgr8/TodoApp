@@ -10,29 +10,35 @@ while True:
         case 'Add' | 'add':
             todo = input("Enter a Todo : ") + "\n"
 
-            file = open('Files/todos.txt', 'r')
+            file = open('todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
             todos.append(todo)
 
-            file = open('Files/todos.txt', 'w')
+            file = open('todos.txt', 'w')
             file.writelines(todos)
             file.close()
 
         case 'Show' | 'Display' | 'show' | 'display':  # bitwise Operator (Show or Display type anything  )
-            file = open('Files/todos.txt', 'r')
+            file = open('todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
-            for index, item in enumerate(todos):  # enumerate fn used here to get index
+            new_todos = []
+
+            for item in todos:
+                new_item = item.strip('\n')
+                new_todos.append(new_item)
+
+            for index, item in enumerate(new_todos):  # enumerate fn used here to get index
                 item = item.title()
                 row = f"{index + 1}.{item}"  # use of f"string" is here !
                 print(row)
 
         case 'edit' | 'Edit':  # we will use List Indexing Function
 
-            file = open('Files/todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
+            file = open('todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
             todos = file.readlines()
             file.close()
 
@@ -41,7 +47,7 @@ while True:
             new_todo = input("Enter the New Todo: ")
             todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
 
-            file = open('Files/todos.txt', 'w') #reformatted the file
+            file = open('todos.txt', 'w') #reformatted the file
             file.writelines(todos)
             file.close()
 
