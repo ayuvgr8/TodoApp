@@ -3,10 +3,13 @@
 # todos = []
 
 while True:
+    # Get User input and strip space characters into it
     user_action = input("Type Add, Show, Edit, Complete, Exit : ")
     user_action = user_action.strip()  # strip() function is used to eliminate the extra spaces
 
     match user_action:
+        # check if the user action is "Add"
+        # Needs to use meaningful variable name to avoid lots of comments
         case 'Add' | 'add':
             todo = input("Enter a Todo : ") + "\n"
 
@@ -25,13 +28,19 @@ while True:
             todos = file.readlines()
             file.close()
 
-            new_todos = []
+            # new_todos = []
 
-            for item in todos:
-                new_item = item.strip('\n')
-                new_todos.append(new_item)
+            # for item in todos:
+            #    new_item = item.strip('\n')
+            #    new_todos.append(new_item)
+
+            # Inline for loop Alternative of upper commented function
+            # List comprehension
+
+            new_todos = [item.strip('\n') for item in todos]
 
             for index, item in enumerate(new_todos):  # enumerate fn used here to get index
+                # item = item.strip('\n') Alternative of list- comprehension here
                 item = item.title()
                 row = f"{index + 1}.{item}"  # use of f"string" is here !
                 print(row)
@@ -47,7 +56,7 @@ while True:
             new_todo = input("Enter the New Todo: ")
             todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
 
-            file = open('todos.txt', 'w') #reformatted the file
+            file = open('todos.txt', 'w')  # reformatted the file
             file.writelines(todos)
             file.close()
 
