@@ -13,20 +13,30 @@ while True:
         case 'Add' | 'add':
             todo = input("Enter a Todo : ") + "\n"
 
-            file = open('todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            # file = open('todos.txt', 'r')
+            # todos = file.readiness()
+            # file.close()
+
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
             todos.append(todo)
 
-            file = open('todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            # file = open('todos.txt', 'w')
+            # file.writelines(todos)
+            # file.close()
+
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
 
         case 'Show' | 'Display' | 'show' | 'display':  # bitwise Operator (Show or Display type anything  )
-            file = open('todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+
+            # file = open('todos.txt', 'r')
+            # todos = file.readlines()
+            # file.close()
+
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
             # new_todos = []
 
@@ -47,22 +57,42 @@ while True:
 
         case 'edit' | 'Edit':  # we will use List Indexing Function
 
-            file = open('todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
-            todos = file.readlines()
-            file.close()
+            # file = open('todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
+            # todos = file.readlines()
+            # file.close()
 
             number = int(input("Number of the todo to edit: "))  # we are converting str to int here
             number = number - 1  # indexing the todo
+
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
+
             new_todo = input("Enter the New Todo: ")
             todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
 
-            file = open('todos.txt', 'w')  # reformatted the file
-            file.writelines(todos)
-            file.close()
+            # file = open('todos.txt', 'w')  # reformatted the file
+            # file.writelines(todos)
+            # file.close()
+
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
 
         case 'complete':
             number = int(input("Number of the todo to complete: "))
-            todos.pop(number - 1)
+
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
+
+            index = number - 1
+            todo_to_remove = todos[index].strip('\n')
+
+            todos.pop(index)
+
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
+
+            message = f"Todo {todo_to_remove} has been removed from your list"
+            print(message)
 
         case 'Exit' | 'exit':
             break
