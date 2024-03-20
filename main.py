@@ -7,98 +7,65 @@ while True:
     user_action = input("Type Add, Show, Edit, Complete, Exit : ")
     user_action = user_action.strip()  # strip() function is used to eliminate the extra spaces
 
-    match user_action:
-        # check if the user action is "Add"
-        # Needs to use meaningful variable name to avoid lots of comments
-        case 'Add' | 'add':
-            todo = input("Enter a Todo : ") + "\n"
+    # check if the user action is "Add"
+    # Needs to use meaningful variable name to avoid lots of comments
+    if 'Add' in user_action:
+        #it will show the string
+        todo = user_action[4:]
 
-            # file = open('todos.txt', 'r')
-            # todos = file.readiness()
-            # file.close()
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+        todos.append(todo)
 
-            todos.append(todo)
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
 
-            # file = open('todos.txt', 'w')
-            # file.writelines(todos)
-            # file.close()
+    if 'Show' in user_action:  # bitwise Operator (Show or Display type anything  )
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-        case 'Show' | 'Display' | 'show' | 'display':  # bitwise Operator (Show or Display type anything  )
+        new_todos = [item.strip('\n') for item in todos]
 
-            # file = open('todos.txt', 'r')
-            # todos = file.readlines()
-            # file.close()
+        for index, item in enumerate(new_todos):  # enumerate fn used here to get index
+            # item = item.strip('\n') Alternative of list- comprehension here
+            item = item.title()
+            row = f"{index + 1}.{item}"  # use of f"string" is here !
+            print(row)
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+    if 'Edit' in user_action:  # we will use List Indexing Function
 
-            # new_todos = []
+        number = int(input("Number of the todo to edit: "))  # we are converting str to int here
+        number = number - 1  # indexing the todo
 
-            # for item in todos:
-            #    new_item = item.strip('\n')
-            #    new_todos.append(new_item)
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            # Inline for loop Alternative of upper commented function
-            # List comprehension
+        new_todo = input("Enter the New Todo: ")
+        todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
 
-            new_todos = [item.strip('\n') for item in todos]
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
 
-            for index, item in enumerate(new_todos):  # enumerate fn used here to get index
-                # item = item.strip('\n') Alternative of list- comprehension here
-                item = item.title()
-                row = f"{index + 1}.{item}"  # use of f"string" is here !
-                print(row)
+    if 'Complete' in user_action:
+        number = int(input("Number of the todo to complete: "))
 
-        case 'edit' | 'Edit':  # we will use List Indexing Function
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            # file = open('todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
-            # todos = file.readiness()
-            # file.close()
+        index = number - 1
+        todo_to_remove = todos[index].strip('\n')
+        todos.pop(index)
 
-            number = int(input("Number of the todo to edit: "))  # we are converting str to int here
-            number = number - 1  # indexing the todo
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+        message = f"Todo {todo_to_remove} has been removed from your list"
+        print(message)
 
-            new_todo = input("Enter the New Todo: ")
-            todos[number] = new_todo  # access the items from the list and how to replace that item through that syntax
-
-            # file = open('todos.txt', 'w')  # reformatted the file
-            # file.writelines(todos)
-            # file.close()
-
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
-
-        case 'complete':
-            number = int(input("Number of the todo to complete: "))
-
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
-
-            index = number - 1
-            todo_to_remove = todos[index].strip('\n')
-
-            todos.pop(index)
-
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
-
-            message = f"Todo {todo_to_remove} has been removed from your list"
-            print(message)
-
-        case 'Exit' | 'exit':
-            break
-
-        case _:
-            print("Hey! You entered an invalid input(unknown command) please try again")
+    if 'Exit' in user_action:
+        break
 
 print("Byeeeeeeee!! You will be missed!")
 

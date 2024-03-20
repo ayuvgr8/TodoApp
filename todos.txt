@@ -1,4 +1,5 @@
 shower
 play
 run
-throw
+Paint the room
+hiShow
