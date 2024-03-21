@@ -9,9 +9,9 @@ while True:
 
     # check if the user action is "Add"
     # Needs to use meaningful variable name to avoid lots of comments
-    if 'Add' in user_action:
-        #it will show the string
-        todo = user_action[4:]
+    if 'add' in user_action:
+        # it will show the string
+        todo = user_action[2:]
 
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
@@ -21,7 +21,7 @@ while True:
         with open('todos.txt', 'w') as file:
             file.writelines(todos)
 
-    if 'Show' in user_action:  # bitwise Operator (Show or Display type anything  )
+    elif 'show' in user_action:  # bitwise Operator (Show or Display type anything  )
 
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
@@ -34,9 +34,9 @@ while True:
             row = f"{index + 1}.{item}"  # use of f"string" is here !
             print(row)
 
-    if 'Edit' in user_action:  # we will use List Indexing Function
+    elif 'edit' in user_action:  # we will use List Indexing Function
 
-        number = int(input("Number of the todo to edit: "))  # we are converting str to int here
+        number = int(input("Number of the todo to edit: "))  #  we are converting str to int here
         number = number - 1  # indexing the todo
 
         with open('todos.txt', 'r') as file:
@@ -48,7 +48,7 @@ while True:
         with open('todos.txt', 'w') as file:
             file.writelines(todos)
 
-    if 'Complete' in user_action:
+    elif 'complete' in user_action:
         number = int(input("Number of the todo to complete: "))
 
         with open('todos.txt', 'r') as file:
@@ -64,7 +64,7 @@ while True:
         message = f"Todo {todo_to_remove} has been removed from your list"
         print(message)
 
-    if 'Exit' in user_action:
+    elif 'Exit' in user_action:
         break
 
 print("Byeeeeeeee!! You will be missed!")

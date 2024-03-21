@@ -57,11 +57,11 @@ while True:
 
         case 'edit' | 'Edit':  # we will use List Indexing Function
 
-            # file = open('todos.txt', 'r')  # Basically it shows how to edit the file stores in Files
+            # file = open('todos.txt', 'r')  # It Basically shows how to edit the file stores in Files
             # todos = file.readiness()
             # file.close()
 
-            number = int(input("Number of the todo to edit: "))  # we are converting str to int here
+            number = int(input("Number of the todo to edit: "))  # here  we are converting str to int here
             number = number - 1  # indexing the todo
 
             with open('todos.txt', 'r') as file:
@@ -78,7 +78,7 @@ while True:
                 file.writelines(todos)
 
         case 'complete':
-            number = int(input("Number of the todo to complete: "))
+            number = int(input("This Number of the todo to complete: "))
 
             with open('todos.txt', 'r') as file:
                 todos = file.readlines()

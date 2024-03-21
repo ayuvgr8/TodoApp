@@ -2,4 +2,3 @@ shower
 play
 run
 Paint the room
-hiShow
