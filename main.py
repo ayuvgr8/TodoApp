@@ -9,7 +9,7 @@ while True:
 
     # check if the user action is "Add"
     # Needs to use meaningful variable name to avoid lots of comments
-    if 'add' in user_action:
+    if 'add' in user_action or 'new' in user_action or 'more' in user_action:
         new_line = '\n'
         todo = (user_action[4:])  # Extracting the todo without the "add" keyword
 
@@ -17,7 +17,6 @@ while True:
             todos = file.readlines()
         todos.append(new_line + todo)
         # todos.append(todo)
-
         # with open('todos.txt', 'a') as file:  # Open the file in append mode ('a')
         #     file.write(todo + '\n')  # Write the todo followed by a newline character
 
