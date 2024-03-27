@@ -6,4 +6,4 @@ Do DSA question daily
 do system design for Interviews
 Practice SQL for data analytics
 Meet Nitish
- Get the groceries
+Get the groceries
