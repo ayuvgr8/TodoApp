@@ -86,8 +86,6 @@ while True:
             print(f"There is no item with that Index {user_action}")
             continue
 
-
-
     # EXIT FUNCTION EXECUTED
 
     elif user_action.startswith("exit"):
