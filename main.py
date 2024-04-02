@@ -96,3 +96,4 @@ while True:
 print("Byeeeeeeee!! You will be missed!")
 
 todos.clear()  # Not sure why this line was here as todos variable is not used after this
+# Comment added for testing

@@ -10,4 +10,4 @@ Update the OS
 clean the bag
 fix the bugs
 fix the mail issues
- add the new member
+add the new member
