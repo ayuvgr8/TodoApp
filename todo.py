@@ -27,7 +27,7 @@ while True:
             # file.close()
 
             with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+                file.writelines(todos)  
 
         case 'Show' | 'Display' | 'show' | 'display':  # bitwise Operator (Show or Display type anything  )
 

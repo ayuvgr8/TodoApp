@@ -1,99 +1,88 @@
-# user_prompt = "Enter the todo:" todos = ['run', 'clean', 'throw']
-
+# Initialize an empty todos list
 # todos = []
 
 while True:
-    # Get User input and strip space characters into it
-    user_action = input("Type Add, Show, Edit, Complete, Exit : ")
-    user_action = user_action.strip()  # strip() function is used to eliminate the extra spaces
-
-    # check if the user action is "Add"
-    # Needs to use meaningful variable name to avoid lots of comments
+    # Get user input and strip space characters
+    user_action = input("Type Add, Show, Edit, Complete, Exit: ")
+    user_action = user_action.strip().lower()  # strip() eliminates extra spaces, lower() handles case insensitivity
 
     # ADD FUNCTION
-
     if user_action.startswith("add") or user_action.startswith("new") or user_action.startswith("more"):
-        # new_line = '\n'
-        todo = (user_action[4:])  # Extracting the todo without the "add" keyword
+        todo = user_action[4:].strip()  # Extracting the todo without the "add" keyword and stripping any extra spaces
+        if todo:  # Ensure todo is not empty
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()
-        # todos.append(new_line + todo)
-        todos.append(todo + '\n')
-        # with open('todos.txt', 'a') as file:  # Open the file in append mode ('a')
-        #     file.write(todo + '\n')  # Write the todo followed by a newline character
+            todos.append(todo + '\n')
 
-        with open('todos.txt', 'w') as file:
-            file.writelines(todos)
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
+        else:
+            print("Please provide a valid todo item.")
 
-    #  SHOWCASE
-
-    elif user_action.startswith("show"):  # bitwise Operator (Show or Display type anything  )
-
+    # SHOWCASE
+    elif user_action.startswith("show"):
         with open('todos.txt', 'r') as file:
             todos = file.readlines()
 
-        new_todos = [item.strip('\n') for item in todos]
+        new_todos = [item.strip() for item in todos]
 
-        for index, item in enumerate(new_todos):  # enumerate fn used here to get index
-            # item = item.strip('\n') Alternative of list- comprehension here
+        for index, item in enumerate(new_todos):
             item = item.title()
-            row = f"{index + 1}.{item}"  # use of f"string" is here !
+            row = f"{index + 1}. {item}"
             print(row)
 
-
-
-    # EDIT CASE
-    # ERROR HANDLING
-    elif user_action.startswith("edit"):  # we will use List Indexing Function
+    # EDIT FUNCTION
+    elif user_action.startswith("edit"):
         try:
-            number = int(user_action[5:])
-            print(number)
-
-            number = number - 1  # indexing the todo
-
+            number = int(user_action[5:].strip())
             with open('todos.txt', 'r') as file:
                 todos = file.readlines()
 
-            new_todo = input("Enter the New Todo: ")
-            todos[number] = new_todo.strip() + '\n'  # Append newline after new todo
+            if 0 < number <= len(todos):
+                new_todo = input("Enter the new todo: ").strip()
+                if new_todo:  # Ensure new todo is not empty
+                    todos[number - 1] = new_todo + '\n'
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+                    with open('todos.txt', 'w') as file:
+                        file.writelines(todos)
+                else:
+                    print("Please provide a valid todo item.")
+            else:
+                print("Invalid number. Please try again.")
         except ValueError:
-            print(f"Your command is invalid for this user action : {user_action}")
-            continue
+            print("Invalid command. Please enter a valid number.")
+        except IndexError:
+            print("Invalid index. Please enter a valid number.")
 
-            # COMPLETE / DELETE FUNCTION
-
+    # COMPLETE/DELETE FUNCTION
     elif user_action.startswith("complete"):
         try:
-            number = int(user_action[9:])
-
+            number = int(user_action[9:].strip())
             with open('todos.txt', 'r') as file:
                 todos = file.readlines()
 
-            index = number - 1
-            todo_to_remove = todos[index].strip('\n')
-            todos.pop(index)
+            if 0 < number <= len(todos):
+                todo_to_remove = todos.pop(number - 1).strip()
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+                with open('todos.txt', 'w') as file:
+                    file.writelines(todos)
 
-            message = f"Todo {todo_to_remove} has been removed from your list"
-            print(message)
+                message = f"Todo '{todo_to_remove}' has been removed from your list."
+                print(message)
+            else:
+                print("Invalid number. Please try again.")
+        except ValueError:
+            print("Invalid command. Please enter a valid number.")
         except IndexError:
-            print(f"There is no item with that Index {user_action}")
-            continue
+            print("Invalid index. Please enter a valid number.")
 
-    # EXIT FUNCTION EXECUTED
-
+    # EXIT FUNCTION
     elif user_action.startswith("exit"):
         break
     else:
-        print("Invalid Statement")
+        print("Invalid command. Please try again.")
 
-print("Byeeeeeeee!! You will be missed!")
+print("Bye! You will be missed!")
 
-todos.clear()  # Not sure why this line was here as todos variable is not used after this
-# Comment added for testing
+# No need to clear the todos list as the program is ending
